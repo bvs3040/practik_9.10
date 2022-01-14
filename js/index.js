@@ -24,12 +24,13 @@ let fruitsJSON = `[
 let fruits = JSON.parse(fruitsJSON);
 
 /*** ОТОБРАЖЕНИЕ ***/
-console.log(fruits);
+
 // отрисовка карточек
 
 const display = () => {
   // TODO: очищаем fruitsList от вложенных элементов,
   // чтобы заполнить актуальными данными из fruits
+  fruitsList.innerHTML='';
    
   for (let i = 0; i <fruits.length; i++) {
     // TODO: формируем новый элемент <li> при помощи document.createElement,
@@ -82,31 +83,31 @@ const display = () => {
    fruitsList.appendChild(newFruit);
   }
 };
-
 // первая отрисовка карточек
 display();
 
 /*** ПЕРЕМЕШИВАНИЕ ***/
 
 // генерация случайного числа в заданном диапазоне
-const getRandomInt = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+const getRandomInt = (max) => {
+  //return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * max) ;
 };
 
 // перемешивание массива
 const shuffleFruits = () => {
   let result = [];
-
-  // ATTENTION: сейчас при клике вы запустите бесконечный цикл и браузер зависнет
+  let r=0;
   while (fruits.length > 0) {
     // TODO: допишите функцию перемешивания массива
-    //
     // Подсказка: находим случайный элемент из fruits, используя getRandomInt
     // вырезаем его из fruits и вставляем в result.
     // ex.: [1, 2, 3], [] => [1, 3], [2] => [3], [2, 1] => [], [2, 1, 3]
     // (массив fruits будет уменьшатся, а result заполняться)
+    let f=getRandomInt(fruits.length);
+        result.splice(r++,0,fruits[f]);
+        fruits.splice(f,1);
   }
-
   fruits = result;
 };
 
