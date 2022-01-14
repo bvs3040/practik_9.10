@@ -24,15 +24,50 @@ let fruitsJSON = `[
 let fruits = JSON.parse(fruitsJSON);
 
 /*** ОТОБРАЖЕНИЕ ***/
-
+console.log(fruits);
 // отрисовка карточек
+
 const display = () => {
   // TODO: очищаем fruitsList от вложенных элементов,
   // чтобы заполнить актуальными данными из fruits
-
-  for (let i = 0; i < fruits.length; i++) {
+  //fruitsList="";
+  
+  for (let i = 0; i <fruits.length; i++) {
     // TODO: формируем новый элемент <li> при помощи document.createElement,
     // и добавляем в конец списка fruitsList при помощи document.appendChild
+    let newLi = document.createElement("li");
+
+    let fruitInfo=document.createElement("div");
+        fruitInfo.classList.add("fruit__info");
+
+    let indexFruit=document.createElement("div"),
+        indexFruitContent=document.createTextNode("index: "+i); 
+        indexFruit.appendChild(indexFruitContent); 
+
+    let kindFruit=document.createElement("div"),
+        kindFruitContent=document.createTextNode(fruits[i]);
+        kindFruit.appendChild(kindFruitContent);
+
+    let colorFruit=document.createElement("div");
+
+    let weightFruit=document.createElement("div");
+
+
+     
+
+
+   fruitInfo.appendChild(indexFruit);
+   fruitInfo.appendChild(kindFruit);
+   fruitInfo.appendChild(colorFruit);
+   fruitInfo.appendChild(weightFruit);
+      
+   newLi.appendChild(fruitInfo);
+   fruitsList.appendChild(newLi);
+
+
+
+
+
   }
 };
 
