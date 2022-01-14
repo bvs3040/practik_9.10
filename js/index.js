@@ -30,13 +30,30 @@ console.log(fruits);
 const display = () => {
   // TODO: очищаем fruitsList от вложенных элементов,
   // чтобы заполнить актуальными данными из fruits
-  //fruitsList="";
-  
+   
   for (let i = 0; i <fruits.length; i++) {
     // TODO: формируем новый элемент <li> при помощи document.createElement,
     // и добавляем в конец списка fruitsList при помощи document.appendChild
-    let newLi = document.createElement("li");
-
+    let newFruit = document.createElement("li");
+        newFruit.classList.add("fruit__item");
+        if (fruits[i].color=="фиолетовый"){
+          newFruit.classList.add("fruit_violet");
+        } else 
+        if (fruits[i].color=="зеленый"){
+          newFruit.classList.add("fruit_green");
+        } else 
+        if (fruits[i].color=="розово-красный"){
+          newFruit.classList.add("fruit_carmazin");
+        } else
+        if (fruits[i].color=="желтый"){
+          newFruit.classList.add("fruit_yellow");
+        } else
+        if (fruits[i].color=="светло-коричневый"){
+          newFruit.classList.add("fruit_lightbrown");
+        } else 
+          newFruit.classList.add("fruit_black");
+        
+        
     let fruitInfo=document.createElement("div");
         fruitInfo.classList.add("fruit__info");
 
@@ -45,29 +62,24 @@ const display = () => {
         indexFruit.appendChild(indexFruitContent); 
 
     let kindFruit=document.createElement("div"),
-        kindFruitContent=document.createTextNode(fruits[i]);
+        kindFruitContent=document.createTextNode("kind: "+fruits[i].kind);
         kindFruit.appendChild(kindFruitContent);
 
-    let colorFruit=document.createElement("div");
+    let colorFruit=document.createElement("div"),
+        colorFruitContent=document.createTextNode("color: "+fruits[i].color);
+        colorFruit.appendChild(colorFruitContent);
 
-    let weightFruit=document.createElement("div");
-
-
-     
-
+    let weightFruit=document.createElement("div"),
+        weightFruitContent=document.createTextNode("weight (кг): "+fruits[i].weight);
+        weightFruit.appendChild(weightFruitContent);
 
    fruitInfo.appendChild(indexFruit);
    fruitInfo.appendChild(kindFruit);
    fruitInfo.appendChild(colorFruit);
    fruitInfo.appendChild(weightFruit);
       
-   newLi.appendChild(fruitInfo);
-   fruitsList.appendChild(newLi);
-
-
-
-
-
+   newFruit.appendChild(fruitInfo);
+   fruitsList.appendChild(newFruit);
   }
 };
 

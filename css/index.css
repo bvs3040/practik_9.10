@@ -126,6 +126,9 @@ main {
 .fruit_lightbrown {
   background: #cd853f;
 }
+.fruit_black {
+  background: #000;
+}
 
 .fruit__info {
   display: flex;
