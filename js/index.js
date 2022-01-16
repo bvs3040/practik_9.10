@@ -20,23 +20,8 @@ let fruitsJSON = `[
   {"kind": "Дуриан", "color": "зеленый", "weight": 35},
   {"kind": "Личи", "color": "розово-красный", "weight": 17},
   {"kind": "Карамбола", "color": "желтый", "weight": 28},
-  {"kind": "Тамаринд", "color": "светло-коричневый", "weight": 22},
-  {"kind": "Мангустин", "color": "фиолетовый", "weight": 13},
-  {"kind": "Дуриан", "color": "зеленый", "weight": 35},
-  {"kind": "Личи", "color": "розово-красный", "weight": 17},
-  {"kind": "Карамбола", "color": "желтый", "weight": 28},
-  {"kind": "Тамаринд", "color": "светло-коричневый", "weight": 22},
-  {"kind": "Мангустин", "color": "фиолетовый", "weight": 13},
-  {"kind": "Дуриан", "color": "зеленый", "weight": 35},
-  {"kind": "Личи", "color": "розово-красный", "weight": 17},
-  {"kind": "Карамбола", "color": "желтый", "weight": 28},
-  {"kind": "Тамаринд", "color": "светло-коричневый", "weight": 22},
-  {"kind": "Мангустин", "color": "фиолетовый", "weight": 13},
-  {"kind": "Дуриан", "color": "зеленый", "weight": 35},
-  {"kind": "Личи", "color": "розово-красный", "weight": 17},
-  {"kind": "Карамбола", "color": "желтый", "weight": 28},
   {"kind": "Тамаринд", "color": "светло-коричневый", "weight": 22}
- ]`;
+   ]`;
 
 // преобразование JSON в объект JavaScript
 let fruits = JSON.parse(fruitsJSON);
@@ -136,6 +121,7 @@ const shuffleFruits = () => {
 shuffleButton.addEventListener('click', () => {
   shuffleFruits();
   display();
+  sortTimeLabel.textContent ='-';
 });
 
 /*** ФИЛЬТРАЦИЯ ***/
@@ -164,6 +150,7 @@ filterButton.addEventListener('click', () => {
 let sortKind = 'bubbleSort'; // инициализация состояния вида сортировки
 let sortTime = '-'; // инициализация состояния времени сортировки
 let priorityColor = ['желтый', 'зеленый', 'розово-красный', 'светло-коричневый', 'фиолетовый']; // эталон сортировки по цвету
+
 //функция сравнения двух элементов по цвету
 
 const comparationColor = (color1, color2) => {
@@ -194,62 +181,6 @@ const sortAPI = {
 
   quickSort(arr, comparation) {
     // TODO: допишите функцию быстрой сортировки
-
-    // функция обмена элементов
-function swap(items, firstIndex, secondIndex){
-  const temp = items[firstIndex];
-  items[firstIndex] = items[secondIndex];
-  items[secondIndex] = temp;
-}
-
-// функция разделитель
-function partition(items, left, right) {
-  var pivot = items[Math.floor((right + left) / 2)],
-      i = left,
-      j = right;
-  while (i <= j) {
-      while (items[i] < pivot) {
-          i++;
-      }
-      while (items[j] > pivot) {
-          j--;
-      }
-      if (i <= j) {
-          swap(items, i, j);
-          i++;
-          j--;
-      }
-  }
-  return i;
-}
-
-// алгоритм быстрой сортировки
-function quickSort(items, left, right) {
-  var index;
-  if (items.length > 1) {
-      left = typeof left != "number" ? 0 : left;
-      right = typeof right != "number" ? items.length - 1 : right;
-      index = partition(items, left, right);
-      if (left < index - 1) {
-          quickSort(items, left, index - 1);
-      }
-      if (index < right) {
-          quickSort(items, index, right);
-      }
-  }
-  return items;
-}
-
-
-
-
-
-
-
-
-
-
-
 
   },
 
@@ -289,5 +220,12 @@ sortActionButton.addEventListener('click', () => {
 addActionButton.addEventListener('click', () => {
   // TODO: создание и добавление нового фрукта в массив fruits
   // необходимые значения берем из kindInput, colorInput, weightInput
+let kindNewFruit=kindInput.value;
+let colorNewFruit= (colorInput.value);
+let weightNewFruit= (weightInput.value);
+
+    fruits.push({kind: kindNewFruit, color: colorNewFruit, weight: weightNewFruit});
+    priorityColor.push(colorNewFruit);
+
   display();
 });
