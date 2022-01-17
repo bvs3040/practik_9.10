@@ -179,10 +179,54 @@ const sortAPI = {
        }                    
   },
 
-  quickSort(arr, comparation) {
+ // quickSort(arr, comparation) {
     // TODO: допишите функцию быстрой сортировки
+    // функция обмена элементов
+swap(arr, firstIndex, secondIndex){
+  const temp = arr[firstIndex];
+  arr[firstIndex] = arr[secondIndex];
+  arr[secondIndex] = temp;
+},
 
-  },
+// функция разделитель
+partition(arr, left, right) {
+  var pivot = arr[Math.floor((right + left) / 2)],
+      i = left,
+      j = right;
+  while (i <= j) {
+      while /*(items[i] < pivot)*/(comparationColor(arr[i],pivot)) {
+          i++;
+      }
+      while /*(items[j] > pivot)*/(comparationColor(pivot,arr[j])) {
+          j--;
+      }
+      if (i <= j) {
+          swap(arr, i, j);
+          i++;
+          j--;
+      }
+  }
+  return i;
+},
+
+// алгоритм быстрой сортировки
+quickSort(arr, left, right) {
+  var index;
+  if (arr.length > 1) {
+      left = typeof left != "number" ? 0 : left;
+      right = typeof right != "number" ? arr.length - 1 : right;
+      index = partition(arr, left, right);
+      if (left < index - 1) {
+          quickSort(arr, left, index - 1);
+      }
+      if (index < right) {
+          quickSort(arr, index, right);
+      }
+  }
+  return arr;
+},
+
+  //},
 
   // выполняет сортировку и производит замер времени
   startSort(sort, arr, comparation) {
@@ -221,11 +265,12 @@ addActionButton.addEventListener('click', () => {
   // TODO: создание и добавление нового фрукта в массив fruits
   // необходимые значения берем из kindInput, colorInput, weightInput
 let kindNewFruit=kindInput.value;
-let colorNewFruit= (colorInput.value);
-let weightNewFruit= (weightInput.value);
-
-    fruits.push({kind: kindNewFruit, color: colorNewFruit, weight: weightNewFruit});
-    priorityColor.push(colorNewFruit);
+let colorNewFruit= colorInput.value;
+let weightNewFruit= weightInput.value;
+     kindNewFruit&&colorNewFruit&&weightNewFruit ? 
+    (fruits.push({kind: kindNewFruit, color: colorNewFruit, weight: weightNewFruit}),
+    priorityColor.push(colorNewFruit)) :
+    alert('Заполните все поля!');
 
   display();
 });
